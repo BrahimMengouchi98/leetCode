@@ -1,21 +1,25 @@
 class Solution {
 public:
     int subarraySum(vector<int>& arr, int k) {
-        int size = arr.size();
-        int count = 0;
-        int sum = 0;
-        for (int i = 0; i < size; i++)
+        int count = 0, sum, i = -1;
+        int l, r, size = arr.size();
+        while (i++ < size)
         {
-            sum = arr[i];
+            l = i;
+            sum = arr[l];
             if (sum == k)
                 count++;
-            for (int j = i + 1; j < size; j++)
+            if (l == size - 1)
+                return count; 
+            r = i;
+            while (++r < size)
             {
-                sum += arr[j];
+                sum += arr[r];
                 if (sum == k)
                     count++;
             }
         }
         return count;
+
     }
 };
